@@ -1,4 +1,4 @@
-# LinktincFront
+# LinktincFront 
 
 Para inicializar el proyecto procerda a instalar nos package necesarios
     `npm install`
