@@ -1,0 +1,24 @@
+<div class="conten_product container">
+    <div class="row">
+        <div class="col col-lg-2"></div>
+        <div class="col col-lg-7">
+            <div class="product" *ngFor="let product of products">
+                <div class="row">
+                    <div class="col-12">
+                        <div><strong>{{product.name}}</strong></div>
+                        <div>Precio: <input [(ngModel)]="product.price"/></div>
+                        <div>Descripcion: {{product.description}}</div>
+                        <div>Cantidad: <input [(ngModel)]="product.amount"/></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="conten_button">
+                            <button class="btn btn-success" title="delete hero"(click)="update(product)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col col-3"></div>
+    </div>
+</div>

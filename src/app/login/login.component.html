@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-2"></div>
+        <div class="col col-lg-7">
+            <div class="login">
+                <div>
+                    <div class="col-6">
+                        User Name
+                    </div>
+                    <div class="col-6">
+                        <input [(ngModel)]="login.userName"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-6">
+                        Password
+                    </div>
+                    <div class="col-6">
+                        <input [(ngModel)]="login.password"/>
+                    </div>
+                    
+                </div>
+                <div class="conten_button">
+                    <button class="btn btn-success conten_button" title="delete hero"(click)="singIn()">Iniciar</button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col col-2"></div>
+    </div>
+</div>

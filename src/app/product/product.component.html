@@ -1,0 +1,49 @@
+<div class="conten_product container">
+    <div class="row">
+        <div class="col col-lg-2"></div>
+        <div class="col col-lg-7">
+            <div class="product" *ngFor="let product of products">
+                <div class="row">
+                    <div class="col-6">
+                        <div><strong>{{product.name}}</strong></div>
+                        <div>Precio: {{product.price}}</div>
+                        <div>Descripcion: {{product.description}}</div>
+                        <div>Cantidad: {{product.amount}}</div>
+                    </div>
+                    <div class="col-6">
+                        <div>Cantidad compra</div>
+                        <div>
+                            <input [(ngModel)]="product.amount_sale"/>
+                        </div>
+                        <div class="conten_button">
+                            <button class="btn btn-success" title="delete hero"(click)="sale(product)">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col col-3">
+            <div>Lista compra</div>
+            <div class="product" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of productSale">
+                            <td>{{product.name}}</td>
+                            <td>{{product.amount_sale}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="conten_button">
+                    <button class="btn btn-success" title="delete hero"(click)="saleProduct()">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
