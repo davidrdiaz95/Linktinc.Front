@@ -1,16 +1,25 @@
-<div class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-10 menu">
-                <nav>
-                    <a class="item_menu" routerLink="/productos">Producto</a> 
-                    <a class="item_menu" routerLink="/createProduct">Agregar Producto</a>    
-                    <a class="item_menu" routerLink="/updateProduct">Actualizar Producto</a>    
-                </nav>
-            </div>
-            <div class="col-2 login">
-                <a class="item_menu" routerLink="/login">login</a>    
-            </div>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary ">
+    <a class="navbar-brand item_menu" href="#">LinkTic</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link item_menu" routerLink="/productos">Producto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link item_menu" routerLink="/createProduct" *ngIf="singIn">Agregar Producto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link item_menu" routerLink="/updateProduct" *ngIf="singIn">Actualizar Producto</a>
+        </li>
+        <li class="nav-item" *ngIf="!singIn">
+            <a class="nav-link item_menu" routerLink="/login">login</a>
+        </li>
+        <li class="nav-item" *ngIf="singIn">
+            <a class="nav-link item_menu" (click)="logout()">Logout</a>
+        </li>
+      </ul>
     </div>
-</div>
+  </nav>

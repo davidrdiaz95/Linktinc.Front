@@ -3,7 +3,8 @@ import { LocalServiceService } from '../../service/local-service.service';
 import { ILogin, Login } from '../../model/login.model';
 import { LoginService } from '../../service/login.service';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { ConnectorService } from '../../service/connector.service';
+import { AlertService } from '../../service/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,11 @@ import { Observable, Subject } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   login!: ILogin;
-  private isLogin: boolean = false;
-
-  loginSubject : Subject<any> = new Subject<any>();
-  loginStream : Observable<any> = this.loginSubject.asObservable();
-  
   constructor (private localService : LocalServiceService,
     private loginService : LoginService,
-    private router: Router
+    private router: Router,
+    private connectorService : ConnectorService,
+    private alertService : AlertService
   ){  }
 
   ngOnInit(): void {
@@ -33,8 +31,12 @@ export class LoginComponent implements OnInit {
         if(token.statusCode == 200)
         {
           this.localService.saveData("token",token.data);
-          this.loginSubject.next(true)
+          this.connectorService.singIn(true)
           this.router.navigate(['/productos']);
+        }
+        else{
+          this.connectorService.singIn(false)
+          this.alertService.showAlertDanger("Datos incorrectos")
         }
       }
     );

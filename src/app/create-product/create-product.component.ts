@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct, Product } from '../../model/product.model';
 import { ProductService } from '../../service/product.service';
 import { LocalServiceService } from '../../service/local-service.service';
+import { AlertService } from '../../service/alert.service';
 
 @Component({
   selector: 'app-create-product',
@@ -12,7 +13,8 @@ export class CreateProductComponent implements OnInit {
   product!: IProduct;
 
   constructor(private productService : ProductService,
-    private localServiceService : LocalServiceService
+    private localServiceService : LocalServiceService,
+    private alertService : AlertService
   ){}
   ngOnInit(): void {
     this.product = new Product();
@@ -22,11 +24,14 @@ export class CreateProductComponent implements OnInit {
     if(token != null)
       this.productService.createProduct(this.product,token).subscribe(
         x=> {
-          if(x.data >0)
-            window.location.reload();
+          if(x.data >0){
+            this.alertService.showAlert("Se creo correctamente el producto")
+            this.product = new Product();
+          }
+          else
+            this.alertService.showAlertDanger("No se pudo crear el producto")
 
         }
       )
   }
-
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../model/product.model';
 import { CreateProduct } from '../../model/create_product.model';
+import { AlertService } from '../../service/alert.service';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +11,9 @@ import { CreateProduct } from '../../model/create_product.model';
 })
 export class ProductComponent implements OnInit {
   
-  constructor(private productServiceService : ProductService){}
+  constructor(private productServiceService : ProductService,
+    private alertService : AlertService
+  ){}
 
   products: CreateProduct[] = [];
   productSale: CreateProduct[] = [];
@@ -28,7 +31,10 @@ export class ProductComponent implements OnInit {
   }
 
   sale(product: CreateProduct): void {
-    this.productSale.push(product)
+    if(product.amount_sale > 0)
+      this.productSale.push(product)  
+    else
+      this.alertService.showAlertAlert("Ingrese la cantidad a comprar");
   }
 
   saleProduct(): void {
@@ -41,7 +47,14 @@ export class ProductComponent implements OnInit {
     this.productServiceService.saleProduct(product,amount).subscribe(
       prduct=> {
         if(prduct.data >0)
-          window.location.reload();
+        {
+          this.alertService.showAlert("Se realizo la compra exitosamente");
+          this.productSale = [];
+          this.getProducts();
+        }
+        else{
+          this.alertService.showAlertDanger("No se pudo realizar la compra")
+        }
       });
   }
 }
