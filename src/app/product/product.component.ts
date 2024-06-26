@@ -31,10 +31,32 @@ export class ProductComponent implements OnInit {
   }
 
   sale(product: CreateProduct): void {
-    if(product.amount_sale > 0)
+    let productShop = this.productSale.filter(x=> x.id == product.id) ;
+    if(productShop.length >0){
+      product.amount_sale = product.amount_sale +1;
+    }
+    else{
+      if(product.amount_sale == undefined)
+        product.amount_sale = 1;
+      else
+      product.amount_sale = product.amount_sale +1;
+
       this.productSale.push(product)  
+    }
+      
+  }
+
+  remove(product: CreateProduct): void {
+    if(product.amount_sale <= 1){
+      this.productSale =  this.productSale.filter(x=> x !=  product)
+      product.amount_sale = 0;
+    }
     else
-      this.alertService.showAlertAlert("Ingrese la cantidad a comprar");
+      if(product.amount_sale == undefined)
+        product.amount_sale = 0;
+      else
+        product.amount_sale = product.amount_sale -1; 
+    
   }
 
   saleProduct(): void {

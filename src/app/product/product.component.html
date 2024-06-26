@@ -3,7 +3,7 @@
         <div class="col col-1"></div>
         <div class="col col-lg-7">
             <div class="d-flex justify-content-center">
-                <h3>Productos</h3>
+                <h2>Productos</h2>
             </div>
             <div class="product" *ngFor="let product of products">
                 <div class="row">
@@ -16,10 +16,9 @@
                     <div class="col-6">
                         <div>Cantidad compra</div>
                         <div>
-                            <input [(ngModel)]="product.amount_sale"/>
-                        </div>
-                        <div class="conten_button">
-                            <button class="btn btn-success" title="delete hero"(click)="sale(product)">Agregar</button>
+                            <input [(ngModel)]="product.amount_sale" disabled="0"/>
+                            <button class="btn btn-success button_shop btn-sm" title="delete hero" (click)="sale(product)">+</button>
+                            <button class="btn btn-danger button_shop btn-sm" title="delete hero"(click)="remove(product)">-</button>
                         </div>
                     </div>
                 </div>
@@ -28,7 +27,7 @@
         </div>
         <div class="col col-4">
             <div class="d-flex justify-content-center">
-                <h3>Carrito Compras</h3>
+                <h2>Carrito Compras</h2>
             </div>
             <div class="product" >
                 <table class="table">
@@ -45,7 +44,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="conten_button">
+                <div class="conten_button d-flex justify-content-end">
                     <button class="btn btn-success" title="delete hero"(click)="saleProduct()">Comprar</button>
                 </div>
             </div>
